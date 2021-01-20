@@ -1,20 +1,21 @@
 <html>
   <body>
   <canvas id="canvas"></canvas>
-   
     <script src="/node_modules/qrcode/build/qrcode.min.js"></script>
     <script>
-      var exampleText = 'ServerTimestamp: 2020-12-10 03:18:05 UTC, ' 
-    //   +
-    //     'BrowserTimestamp: 2020-12-10 03:18:05 UTC, ' +
-    //     'Workspace: 259efaa7-f73e-4649-9410-2425e332e9e0, ' +
-    //     'UserGuid: 00012345-f73e-4649-9410-2425e332e9e0, ' +
-    //     'ErrorId/CorrelationID: 00012345-f73e-4649-9410-2425e332e9e0'
-      QRCode.toCanvas(document.getElementById('canvas'), 'ServerTimestamp 2020-12:10', {color: {
-    dark:"#00a0af",
-    light:"#fff"}
-  }, function (error) {
-        if (error) console.error(error)
+      var exampleText = 'ServerTimestamp: 2020-12-10 03:18:05 UTC, ' +
+        'BrowserTimestamp: 2020-12-10 03:18:05 UTC, ' +
+        'Workspace: 259efaa7-f73e-4649-9410-2425e332e9e0, ' +
+        'UserGuid: 00012345-f73e-4649-9410-2425e332e9e0, ' +
+        'ErrorId/CorrelationID: 00012345-f73e-4649-9410-2425e332e9e0'
+
+      QRCode.toCanvas(document.getElementById('canvas'), exampleText, {color: {
+            dark:"#00a0af",
+            light:"#fff"}
+        }, function (error) {
+        if (error) {
+            console.error(error)
+        }
         console.log('success!')
       })
     </script> 
