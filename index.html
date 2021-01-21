@@ -24,15 +24,15 @@
 
         const longText = JSON.stringify(long)
         const shortText = JSON.stringify(short)
-        const colors = {color: { dark:"#00a0af", light:"#fff"}}
+        const options = {scale: 2, color: { dark:"#00a0af", light:"#fff"}}
     
-        QRCode.toCanvas(document.getElementById('canvasLong'), longText, colors, function (error) {
+        QRCode.toCanvas(document.getElementById('canvasLong'), longText, options, function (error) {
             if (error) {
                 console.error(error)
             }
             console.log('success!')
         })
-        QRCode.toCanvas(document.getElementById('canvasShort'), shortText,colors, function (error) {
+        QRCode.toCanvas(document.getElementById('canvasShort'), shortText,options, function (error) {
             if (error) {
                 console.error(error)
             }
