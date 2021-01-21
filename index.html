@@ -1,22 +1,42 @@
 <html>
   <body>
-  <canvas id="canvas"></canvas>
+  <canvas id="canvasLong"></canvas>
+  <br/>
+  <canvas id="canvasShort"></canvas>
     <script src="/node_modules/qrcode/build/qrcode.min.js"></script>
     <script>
-      var exampleText = 'ServerTimestamp: 2020-12-10 03:18:05 UTC, ' +
-        'BrowserTimestamp: 2020-12-10 03:18:05 UTC, ' +
-        'Workspace: 259efaa7-f73e-4649-9410-2425e332e9e0, ' +
-        'UserGuid: 00012345-f73e-4649-9410-2425e332e9e0, ' +
-        'ErrorId/CorrelationID: 00012345-f73e-4649-9410-2425e332e9e0'
+        const long = {ServerTimestamp: "2020-12-10 03:18:59 UTC",
+                      BrowserTimestamp: "2020-12-10 03:19:01 UTC", 
+                      Workspace: "75b6be9b-947d-49eb-abcd-40d57c0be864",
+                      UserGuid: "0060dbd1-9123-4bf6-ba85-506f1ee632c6", 
+                      CorrelationID: "697f4c88-f2bd-4c5e-8ab3-d43c5661210e",
+                      Environment: "prod",
+                      Browser: "Chrome/81.0.4044.138"}
 
-      QRCode.toCanvas(document.getElementById('canvas'), exampleText, {color: {
-            dark:"#00a0af",
-            light:"#fff"}
-        }, function (error) {
-        if (error) {
-            console.error(error)
-        }
-        console.log('success!')
+
+        const short = {sts: "2020-12-10 03:18:59 UTC",
+                       bts: "2020-12-10 03:19:01 UTC", 
+                       wsid: "75b6be9b-947d-49eb-abcd-40d57c0be864",
+                       uid: "0060dbd1-9123-4bf6-ba85-506f1ee632c6", 
+                       id: "697f4c88-f2bd-4c5e-8ab3-d43c5661210e",
+                       env: "prod",
+                       b: "Chrome/81.0.4044.138"};
+
+        const longText = JSON.stringify(long)
+        const shortText = JSON.stringify(short)
+        const colors = {color: { dark:"#00a0af", light:"#fff"}}
+    
+        QRCode.toCanvas(document.getElementById('canvasLong'), longText, colors, function (error) {
+            if (error) {
+                console.error(error)
+            }
+            console.log('success!')
+        })
+        QRCode.toCanvas(document.getElementById('canvasShort'), shortText,colors, function (error) {
+            if (error) {
+                console.error(error)
+            }
+            console.log('success!')
       })
     </script> 
   </body>
