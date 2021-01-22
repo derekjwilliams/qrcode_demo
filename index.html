@@ -1,8 +1,16 @@
 <html>
   <body>
+  full
+  <br/>
   <canvas id="canvasLong"></canvas>
   <br/>
+  abbreviated
+  <br/>
   <canvas id="canvasShort"></canvas>
+  <br/>
+  abbreviated base64
+  <br/>
+  <canvas id="canvasVeryShort"></canvas>
     <script src="/node_modules/qrcode/build/qrcode.min.js"></script>
     <script>
         const long = {ServerTimestamp: "2020-12-10 03:18:59 UTC",
@@ -21,10 +29,23 @@
                        id: "697f4c88-f2bd-4c5e-8ab3-d43c5661210e",
                        env: "prod",
                        b: "Chrome/81.0.4044.138"};
+        const wsid = window.btoa(JSON.stringify("75b6be9b-947d-49eb-abcd-40d57c0be864"))
+        const uid = window.btoa(JSON.stringify("0060dbd1-9123-4bf6-ba85-506f1ee632c6"))
+        const id = window.btoa(JSON.stringify("697f4c88-f2bd-4c5e-8ab3-d43c5661210e"))
+        const shortendUuids = {sts: "2020-12-10 03:18:59 UTC",
+                    bts: "2020-12-10 03:19:01 UTC", 
+                    wsid: wsid,
+                    uid: uid, 
+                    id: id,
+                    env: "prod",
+                    b: "Chrome/81.0.4044.138"};
 
+        // const veryshort = Buffer.from(JSON.stringify(short)).toString('base64')
+        const veryshort = window.btoa(JSON.stringify(short))
+        console.log(veryshort)
         const longText = JSON.stringify(long)
         const shortText = JSON.stringify(short)
-        const options = {scale: 2, color: { dark:"#00a0af", light:"#fff"}}
+        const options = {scale: 3, color: { dark:"#00a0af", light:"#fff"}}
     
         QRCode.toCanvas(document.getElementById('canvasLong'), longText, options, function (error) {
             if (error) {
@@ -37,7 +58,14 @@
                 console.error(error)
             }
             console.log('success!')
-      })
+        })
+        QRCode.toCanvas(document.getElementById('canvasVeryShort'), JSON.stringify(shortendUuids) ,options, function (error) {
+            if (error) {
+                console.error(error)
+            }
+            console.log('success!')
+        })
     </script> 
   </body>
 </html>
+
